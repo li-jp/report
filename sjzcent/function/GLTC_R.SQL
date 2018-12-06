@@ -1,0 +1,29 @@
+CREATE OR REPLACE FUNCTION GLTC_R(ZYJ IN NUMBER, GL IN INTEGER)
+  RETURN NUMBER IS
+  RESULT NUMBER;
+  R      NUMBER;
+
+BEGIN
+  IF GL >= 0
+  THEN
+    R := GL * 0.005;
+  ELSE
+    R := 0;
+  END IF;
+
+  IF R <= 0.030
+  THEN
+    R := R;
+  ELSE
+    R := 0.030;
+  END IF;
+
+  IF ZYJ >= 20000
+  THEN
+    RESULT := R;
+  ELSE
+    RESULT := 0;
+  END IF;
+
+  RETURN(RESULT);
+END GLTC_R;

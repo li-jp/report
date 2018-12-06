@@ -1,0 +1,81 @@
+create or replace view fin_contract_view as
+(
+(select t.id,
+'买卖' contract_type,
+t.address,
+t.agent_cardid,
+t.agent_name,
+t.agent_sex,
+t.agent_tel,
+t.build_area,
+t.contract_code,
+t.deal_date,
+t.deal_dept_id,
+t.deal_user_id,
+t.deal_price,-- 成交价
+t.deposit,
+t.duty_dept_id,
+t.duty_user_id,
+t.handwriting_code,
+t.house_type,
+t.is_rec,
+t.input_date,
+t.key_dept_id,
+t.key_user_id,
+t.mmfy_dept_id   fy_dept_id,
+t.mmfy_id        fy_id,
+t.mmfy_user_id   fy_user_id,
+t.pay_type,
+t.photo_dept_id,
+t.photo_user_id,
+t.remarks,
+t.review_date,
+t.review_user_id,
+t.status,
+nvl(m.vat,m.SUPPLEMENTARY_TAX) tax,
+m.matching support,
+mr.receivable
+from BIZ_MMFY_CONTRACT t
+join biz_mmfy m on m.id = t.mmfy_id and t.is_rec = 0
+join BIZ_CONTRACT_RECEIVABLE mr on mr.contract_id = t.id and mr.fee_type = '中介服务费'
+)
+union
+(select t.id,
+'租赁' contract_type,
+t.address,
+t.agent_cardid,
+t.agent_name,
+t.agent_sex,
+t.agent_tel,
+t.build_area,
+t.contract_code,
+t.deal_date,
+t.deal_dept_id,
+t.deal_user_id,
+t.rent  deal_price,-- 成交租金
+t.deposit,
+t.duty_dept_id,
+t.duty_user_id,
+t.handwriting_code,
+t.house_type,
+t.is_rec,
+t.input_date,
+t.key_dept_id,
+t.key_user_id,
+t.zlfy_dept_id   fy_dept_id,
+t.zlfy_id        fy_id,
+t.zlfy_user_id   fy_user_id,
+t.pay_type,
+t.photo_dept_id,
+t.photo_user_id,
+t.remarks,
+t.review_date,
+t.review_user_id,
+t.status,
+nvl(z.vat,z.SUPPLEMENTARY_TAX) tax,
+z.supporting support,
+zr.receivable
+from biz_zlfy_contract t
+join biz_zlfy z on z.id = t.zlfy_id and t.is_rec = 0
+join BIZ_CONTRACT_RECEIVABLE zr on zr.contract_id = t.id and zr.fee_type = '中介服务费'
+));
