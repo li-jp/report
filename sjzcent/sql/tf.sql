@@ -56,6 +56,19 @@ from
 	"' or u.daquname ='"+ pro_name+
 	"')")
 	}
+ and   (u.job_name = '店经理' 
+	or  mmzjxz.mmzjf != 0
+	or  mmdkxz.mmdkf != 0
+	or  mmpgxz.mmpgf != 0
+	or  mmqtxz.mmqt  != 0
+	or  zlzjxz.zlzjf != 0
+	or  zlqtxz.zlqt  != 0
+	or  mmzjjz.mmzjf != 0
+	or  mmdkjz.mmdkf != 0
+	or  mmpgjz.mmpgf != 0
+	or  mmqtjz.mmqt  != 0
+	or  zlzjjz.zlzjf != 0
+	or  zlqtjz.zlqt  != 0)
  --and   (u.user_id = '${id}' or u.dept_id = '${id}' or u.pianqu_id = '${id}')
  order by u.nameall,u.deptname
  
