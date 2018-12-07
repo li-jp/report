@@ -56,8 +56,7 @@ from
 	"' or u.daquname ='"+ pro_name+
 	"')")
 	}
- and   (u.job_name = '店经理' 
-	or  mmzjxz.mmzjf != 0
+ and   (mmzjxz.mmzjf != 0
 	or  mmdkxz.mmdkf != 0
 	or  mmpgxz.mmpgf != 0
 	or  mmqtxz.mmqt  != 0
