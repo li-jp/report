@@ -66,7 +66,7 @@ from
         or  mmzjjz.mmzjf != 0
         or  mmdkjz.mmdkf != 0
         or  mmpgjz.mmpgf != 0
-        or  mmqtxz.mmqt  != 0
+        or  mmqtjz.mmqt  != 0
         or  zlzjjz.zlzjf != 0
         or  zlqtjz.zlqt  != 0)
  --and   (u.user_id like '%${id}%' or u.dept_id like '%${id}%' or u.pianqu_id like '%${id}%')
