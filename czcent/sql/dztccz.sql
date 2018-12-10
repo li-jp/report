@@ -14,7 +14,7 @@ DMYJTC_R(T.MMYJ+T.ZLYJ) AS DMYJTC_R,
 DMYJTC(T.MMYJ+T.ZLYJ) AS DMYJTC
 from DZZYJ t
 where VIEW_DATE.SET_DATE('${D}') = TO_DATE('${D}','yyyy-MM')
- and t.deptname like '%${text}%'
+ and (t.deptname like '%${text}%' or T.DAQUNAME LIKE '%${text}%' OR T.USERNAME LIKE '%${text}%')
  ${if(len(pro_name)==0,"",
 	"and (t.username= '"+pro_name+
 	"' or t.deptname ='"+ pro_name+

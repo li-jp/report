@@ -59,7 +59,7 @@ from
   left join
  (select zlfee.user_id,sum(zlfee.price) zlmfzjf from report_zl_fee_info zlfee  where zlfee.fee_name = '卖方中介费' and to_char(zlfee.review_date,'yyyy-MM-dd') < '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' and zlfee.price >= 0 group by zlfee.user_id) zlmfzjfjz
  on u.user_id = zlmfzjfjz.user_id
- where u.deptname like '%${text}%'
+ where (u.deptname like '%${text}%' or u.daquname like '%${text}%' or u.username like '%${text}%')
    ${if(len(pro_name)==0,"",
 	"and (u.username= '"+pro_name+
 	"' or u.deptname ='"+ pro_name+

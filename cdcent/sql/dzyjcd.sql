@@ -68,7 +68,7 @@ from
  (select zlfee.store_user_id,sum(zlfee.price) zlzjfwf from report_zl_fee_info zlfee  where zlfee.fee_name = '中介服务费' and to_char(zlfee.review_date,'yyyy-MM-dd') < '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' and zlfee.price >= 0 group by zlfee.store_user_id) zlzjfwfjz
  on u.user_id = zlzjfwfjz.store_user_id
 
- where u.deptname like '%${text}%'
+ where (u.deptname like '%${text}%' OR U.DAQUNAME LIKE '%${text}%' OR U.USERNAME LIKE '%${text}%')
  ${if(len(pro_name)==0,"",
 	"and (u.username= '"+pro_name+
 	"' or u.deptname ='"+ pro_name+
