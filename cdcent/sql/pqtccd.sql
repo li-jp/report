@@ -1,19 +1,5 @@
-select T.USER_ID,
-T.USERNAME,
-T.JOB_NAME,
-T.STATUS,
-T.INDUCTION_TIME,
-T.STAR_LEVEL,
-T.DEPT_ID,
-T.DEPTNAME,
-T.DAQUNAME,
-T.DIMISSION_DATE,
-T.IF_NEWOROLD,
-T.MMYJ,
-T.ZLYJ,
-PQYJTC_R(T.MMYJ+T.ZLYJ) AS PQYJTC_R,
-PQYJTC(T.MMYJ+T.ZLYJ) AS PQYJTC
-from QZZYJ t
+select *
+from qztc t
 where VIEW_DATE.SET_DATE('${D}') = TO_DATE('${D}','yyyy-MM')
 and (t.deptname like '%${text}%' or t.daquname like '%${text}%' or t.username like '%${text}%')
  ${if(len(pro_name)==0,"",

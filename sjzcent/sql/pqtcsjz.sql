@@ -1,22 +1,5 @@
-select T.USER_ID,
-T.USERNAME,
-T.JOB_NAME,
-T.STATUS,
-T.INDUCTION_TIME,
-T.STAR_LEVEL,
-T.DEPT_ID,
-T.DEPTNAME,
-T.DAQUNAME,
-T.DIMISSION_DATE,
-T.NUM,
-T.MMYJ,
-T.ZLYJ,
-T.PGF,
-(T.MMYJ + T.ZLYJ + T.PGF) AS PQZYJ,
-(T.MMYJ + T.ZLYJ + T.PGF)/T.NUM AS WLDJYJ,--物理店均业绩
-PQYJTC_R((T.MMYJ+T.ZLYJ + T.PGF),T.NUM) AS YJTC_R,
-PQYJTC((T.MMYJ+T.ZLYJ + T.PGF),T.NUM) AS YJTC
-from QZZYJ t
+select *
+from qztc t
 where VIEW_DATE.SET_DATE('${D}') = TO_DATE('${D}','yyyy-MM')
 and (t.deptname like '%${text}%' or t.daquname like '%${text}%' or t.username like '%${text}%')
  ${if(len(pro_name)==0,"",
