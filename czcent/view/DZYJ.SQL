@@ -62,9 +62,7 @@ from
  (select zlfee.store_user_id,sum(zlfee.price) zlmfzjf from report_zl_fee_info zlfee  where zlfee.fee_name = '卖方中介费' and to_char(zlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(zlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(zlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and zlfee.price >= 0 group by zlfee.store_user_id) zlmfzjfjz
  on u.user_id = zlmfzjfjz.store_user_id
 
- where u.deptname like '%%'
- --and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
- and   (u.job_name = '店经理'
+ where (u.job_name = '店经理'
         or  mmzjfwfxz.mmzjfwf != 0
         or  mmmfzjfxz.mmmfzjf != 0
         or  mmdkfwfxz.mmdkfwf != 0
@@ -79,4 +77,5 @@ from
         or  mmqtfyjz.mmqtfy   != 0
         or  zlzjfwfjz.zlzjfwf != 0
         or  zlmfzjfjz.zlmfzjf != 0)
+--and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
  order by u.nameall,u.deptname;
