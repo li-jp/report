@@ -49,7 +49,7 @@ join biz_contract_fee fee
 on mc.id = fee.contract_id
 join new_fin_profit_detail nd
 on nd.fee_id = fee.id
-where  mc.is_rec = 0 and fee.is_rec = 0 and nd.is_rec = 0
+where  mc.is_rec = 0 and fee.is_rec = 0 and nd.is_rec = 0 and (fee.status = '已审核' or fee.status = '已分成') --存在于new_fin_profit_detail中的数据为收入类数据，流程状态为待确认-待审核-已审核-已分成
 and fee.fee_name = '中介服务费'
 group by  mc.id
 order by mc.id
