@@ -18,7 +18,7 @@ mmqtjz.mmqt as 买卖其他费用结转,mmqtjz.contract_code as 买卖其他费�
 zlzjjz.zlzjf as 租赁中介服务费结转, zlzjjz.contract_code as 租赁中介服务费结转合同编号, zlzjjz.handwriting_code as 租赁中介服务费结转手写编号, zlzjjz.deal_date as 租赁中介服务费结转成单时间, 
 zlqtjz.zlqt as 租赁其他费用结转 ,zlqtjz.contract_code as 租赁其他费用结转合同编号, zlqtjz.handwriting_code as 租赁其他费用结转手写编号, zlqtjz.deal_date as 租赁其他费用结转成单时间 
 from 
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=35) or usr.status = '在职')) u 
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%分公司%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=35) or usr.status = '在职')) u 
  --买卖中介服务费新增
  left join
  (select mmfee.user_id, mmfee.price mmzjf, mmfee.contract_code, mmfee.handwriting_code, mmfee.deal_date from report_mm_fee_info mmfee  where mmfee.fee_name = '中介服务费' and to_char(mmfee.review_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(mmfee.review_date,'yyyy-MM-dd') <= '${MONTH_END}' and to_char(mmfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(mmfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' and mmfee.price <= 0 group by mmfee.user_id, mmfee.price , mmfee.contract_code, mmfee.handwriting_code, mmfee.deal_date) mmzjxz
@@ -98,6 +98,24 @@ from
 	"' or u.daquname ='"+ pro_name+
 	"')")
 	}
+ and (mmzjxz.mmzjf       != 0
+      or mmmfzjfxz.mfzjf != 0
+      or mmdkxz.mmdkf    != 0
+      or mmpgxz.mmpgf    != 0
+      or mmdbghfxz.dbghf != 0
+      or mmdzfwfxz.dzfwf != 0
+      or mmqtxz.mmqt     != 0
+      or zlzjxz.zlzjf    != 0
+      or zlqtxz.zlqt     != 0
+      or mmzjjz.mmzjf    != 0
+      or mmmfzjfjz.mfzjf != 0
+      or mmdkjz.mmdkf    != 0
+      or mmpgjz.mmpgf    != 0
+      or mmdbghfjz.dbghf != 0
+      or mmdzfwfjz.dzfwf != 0
+      or mmqtjz.mmqt     != 0
+      or zlzjjz.zlzjf    != 0
+      or zlqtjz.zlqt     != 0)
  --and   (u.user_id = '${id}' or u.dept_id = '${id}' or u.pianqu_id = '${id}')
  order by u.nameall,u.deptname
  
