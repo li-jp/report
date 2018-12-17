@@ -18,7 +18,7 @@ BEGIN
     R := 0.030;
   END IF;
 
-  IF ZYJ >= 20000
+  IF ZYJ >= 0
   THEN
     RESULT := R;
   ELSE

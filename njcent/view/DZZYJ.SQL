@@ -10,7 +10,10 @@ DEPTNAME ,
 DAQUNAME ,
 DIMISSION_DATE ,
 GL(T.USER_ID,LAST_DAY(VIEW_DATE.GET_DATE)) AS GL ,
-(NVL(T.买卖中介服务费新增,0)+NVL(T.买卖贷款服务费新增,0)+NVL(T.买卖其他费用新增,0)+NVL(T.买卖中介服务费结转,0)+NVL(T.买卖贷款服务费结转,0)+NVL(T.买卖评估费提成结转,0)) AS MMYJ,
-(NVL(T.买卖评估费提成新增,0)+NVL(T.买卖评估费提成结转,0)) AS PGF,
-(NVL(T.租赁中介服务费新增,0)+NVL(T.租赁其他费用新增,0)+NVL(T.租赁中介服务费结转,0)+NVL(T.租赁其他费用结转,0)) AS ZLYJ
+(NVL(T.买卖中介服务费新增,0)+NVL(T.买卖贷款服务费新增,0)+NVL(T.买卖其他费用新增,0)+NVL(T.买卖中介服务费结转,0)+NVL(T.买卖贷款服务费结转,0)+NVL(T.买卖其他费用结转,0)) AS MMYJ,
+(NVL(T.租赁中介服务费新增,0)+NVL(T.租赁中介服务费结转,0)) AS ZLYJ,
+(NVL(T.代理代理服务费新增,0)+NVL(T.代理代理服务费结转,0)) AS DLYJ,
+(NVL(T.店长买卖中介服务费新增,0)+NVL(T.店长买卖贷款服务费新增,0)+NVL(T.店长买卖其他费用新增,0)+NVL(T.店长买卖中介服务费结转,0)+NVL(T.店长买卖贷款服务费结转,0)+NVL(T.店长买卖其他费用结转,0)) AS DZMMYJ,
+(NVL(T.店长租赁中介服务费新增,0)+NVL(T.店长租赁中介服务费结转,0)) AS DZZLYJ,
+(NVL(T.店长代理代理服务费新增,0)+NVL(T.店长代理代理服务费结转,0)) AS DZDLYJ
 FROM   DZYJ T;
