@@ -1,3 +1,4 @@
+							  
 select *
 from qztc t
 where VIEW_DATE.SET_DATE('${D}') = TO_DATE('${D}','yyyy-MM')
@@ -11,5 +12,8 @@ and (t.deptname like '%${text}%' or t.daquname like '%${text}%' or t.username li
  and   (t.job_name = '营业经理' 
         or  T.MMYJ != 0
         or  T.ZLYJ != 0
-        or  T.PGF != 0)
+        or  T.DLYJ != 0
+        or  T.QZMMYJ != 0
+        or  T.QZZLYJ != 0
+        or  T.QZDLYJ != 0)
  order by t.DAQUNAME,t.deptname
