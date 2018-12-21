@@ -101,7 +101,7 @@ AND    TO_CHAR(T2.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}';
 --实收金额
 select u.deptname, (NVL(zlzjxz.zlzjf,0)+NVL(zlqtxz.zlqt,0)+NVL(zlzjjz.zlzjf,0)+NVL(zlqtjz.zlqt,0)) AS 实收金额, '租赁' AS TYPE
 from 
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=60) or usr.status = '在职') and usr.deptname like '%${text}%') u 
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%片区%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=60) or usr.status = '在职') and usr.deptname like '%${text}%') u 
   --租赁中介服务费新增
  left join 
  (select zlfee.user_id,sum(zlfee.price) zlzjf from report_zl_fee_info zlfee  where zlfee.fee_name = '中介服务费' and to_char(zlfee.review_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(zlfee.review_date,'yyyy-MM-dd') <= '${MONTH_END}' and to_char(zlfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' group by zlfee.user_id) zlzjxz
@@ -121,7 +121,7 @@ from
  UNION all
  select u.deptname, (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)) AS 实收金额, '买卖' TYPE
 from 
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=60) or usr.status = '在职') and usr.deptname like '%${text}%') u 
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%片区%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=60) or usr.status = '在职') and usr.deptname like '%${text}%') u 
  --买卖中介服务费新增
  left join
  (select mmfee.user_id,sum(mmfee.price) mmzjf from report_mm_fee_info mmfee  where mmfee.fee_name = '中介服务费' and to_char(mmfee.review_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(mmfee.review_date,'yyyy-MM-dd') <= '${MONTH_END}' and to_char(mmfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(mmfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' group by mmfee.user_id) mmzjxz

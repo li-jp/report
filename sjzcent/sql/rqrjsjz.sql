@@ -12,7 +12,7 @@ AND   RECVB.FEE_TYPE = '中介服务费'
 AND   D1.NAME LIKE '%${text}%'
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}'
-UNION
+UNION all
 SELECT SUM(RECVB.RECEIVABLE) PRICE
 FROM BIZ_MM_CONTRACT T1,SYS_DEPARTMENT D1, BIZ_CONTRACT_RECEIVABLE RECVB
 WHERE T1.STATUS = '已审核'
@@ -25,7 +25,7 @@ AND   RECVB.FEE_TYPE = '贷款服务费'
 AND   D1.NAME LIKE '%${text}%'
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}'
-UNION
+UNION all
 SELECT SUM(DETAIL.PRICE) PRICE
 FROM BIZ_MM_CONTRACT T1,SYS_DEPARTMENT D1, NEW_FIN_PROFIT_DETAIL DETAIL, BIZ_CONTRACT_FEE FEE 
 WHERE T1.STATUS = '已审核'
@@ -39,7 +39,7 @@ AND   DETAIL.REASON = '评估费'
 AND   D1.NAME LIKE '%${text}%'
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}'))
-UNION
+UNION all
 (SELECT SUM(PRICE), '租赁' TYPE FROM
 (SELECT SUM(RECVB.RECEIVABLE) PRICE
 FROM   BIZ_ZL_CONTRACT T2, SYS_DEPARTMENT D2, BIZ_CONTRACT_RECEIVABLE RECVB
@@ -53,7 +53,7 @@ AND    RECVB.FEE_TYPE = '中介服务费'
 AND    D2.NAME LIKE '%${text}%'
 AND    TO_CHAR(T2.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T2.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}'
-UNION
+UNION all
 SELECT SUM(RECVB.RECEIVABLE) PRICE
 FROM   BIZ_ZL_CONTRACT T2, SYS_DEPARTMENT D2, BIZ_CONTRACT_RECEIVABLE RECVB
 WHERE  T2.STATUS = '已审核'
@@ -82,7 +82,7 @@ AND   DETAIL.REASON = '评估费'
 AND   D1.NAME LIKE '%${text}%'
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}'
-UNION
+UNION all
 SELECT SUM(DETAIL.PRICE) PRICE, '租赁' TYPE
 FROM BIZ_ZL_CONTRACT T2,SYS_DEPARTMENT D1, NEW_FIN_PROFIT_DETAIL DETAIL, BIZ_CONTRACT_FEE FEE 
 WHERE T2.STATUS = '已审核'
@@ -118,7 +118,7 @@ from
   left join 
  (select zlfee.user_id,sum(zlfee.price) zlqt from report_zl_fee_info zlfee  where zlfee.fee_name = '其他费用' and to_char(zlfee.review_date,'yyyy-MM-dd') < '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') >= '${MONTH_START}' and to_char(zlfee.input_date,'yyyy-MM-dd') <= '${MONTH_END}' and zlfee.price >= 0 group by zlfee.user_id) zlqtjz
  on u.user_id = zlqtjz.user_id
- UNION
+ UNION all
  select u.deptname, (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)) AS 实收金额, '买卖' TYPE
 from 
  (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date('${MONTH_END}','yyyy-MM-dd')-usr.Dimission_Date) <=60) or usr.status = '在职') and usr.deptname like '%${text}%') u 
@@ -166,7 +166,7 @@ AND    T1.DEAL_DEPT_ID = D1.ID
 AND    D1.NAME LIKE '%${text}%'
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') >= '${MONTH_START}' 
 AND    TO_CHAR(T1.REVIEW_DATE,'YYYY-MM-DD') <= '${MONTH_END}')
-UNION
+UNION all
 (SELECT COUNT(T2.ID), '租赁' TYPE
 FROM   BIZ_ZL_CONTRACT T2, SYS_DEPARTMENT D2 
 WHERE  T2.STATUS = '已审核'
