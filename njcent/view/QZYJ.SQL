@@ -4,7 +4,7 @@ mmzjxz.mmzjf as 买卖中介服务费新增,mmdkxz.mmdkf as 买卖贷款服务�
 qzmmzjxz.mmzjf as 区长买卖中介服务费新增,qzmmdkxz.mmdkf as 区长买卖贷款服务费新增,qzmmqtxz.mmqt as 区长买卖其他费用新增,qzzlzjxz.zlzjf as 区长租赁中介服务费新增,qzdlfwfxz.dlfwf as 区长代理代理服务费新增,qzmmzjjz.mmzjf as 区长买卖中介服务费结转,qzmmdkjz.mmdkf as 区长买卖贷款服务费结转,qzmmqtjz.mmqt as 区长买卖其他费用结转,qzzlzjjz.zlzjf as 区长租赁中介服务费结转,qzdlfwfjz.dlfwf as 区长代理代理服务费结转
 
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%大区%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_DATE,'yyyy-MM') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房业务部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_DATE,'yyyy-MM') ))) u
  --买卖中介服务费新增
  left join
  (select mmfee.area_user_id,sum(mmfee.price) mmzjf from report_mm_fee_info mmfee  where mmfee.fee_name = '中介服务费' and to_char(mmfee.review_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and to_char(mmfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') group by mmfee.area_user_id) mmzjxz
@@ -45,7 +45,7 @@ from
  left join
  (select dlfee.area_user_id,sum(dlfee.price) dlfwf from report_dl_fee_info dlfee  where dlfee.fee_name = '代理服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and dlfee.price >= 0 group by dlfee.area_user_id) dlfwfjz
  on u.user_id = dlfwfjz.area_user_id
- 
+
  --商圈经理个人业绩
  --买卖中介服务费新增
  left join
@@ -87,26 +87,26 @@ from
  left join
  (select dlfee.user_id,sum(dlfee.price) dlfwf from report_dl_fee_info dlfee  where dlfee.fee_name = '代理服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and dlfee.price >= 0 group by dlfee.user_id) qzdlfwfjz
  on u.user_id = qzdlfwfjz.user_id
- where (u.job_name = '商圈经理'
+ where (u.job_name = '区长'
         or mmzjxz.mmzjf  != 0
-        or mmdkxz.mmdkf  != 0 
-        or mmqtxz.mmqt   != 0 
-        or zlzjxz.zlzjf  != 0 
-        or dlfwfxz.dlfwf != 0 
-        or mmzjjz.mmzjf  != 0 
-        or mmdkjz.mmdkf  != 0 
-        or mmqtjz.mmqt   != 0 
-        or zlzjjz.zlzjf  != 0 
+        or mmdkxz.mmdkf  != 0
+        or mmqtxz.mmqt   != 0
+        or zlzjxz.zlzjf  != 0
+        or dlfwfxz.dlfwf != 0
+        or mmzjjz.mmzjf  != 0
+        or mmdkjz.mmdkf  != 0
+        or mmqtjz.mmqt   != 0
+        or zlzjjz.zlzjf  != 0
         or dlfwfjz.dlfwf != 0
-		or qzmmzjxz.mmzjf  != 0
-        or qzmmdkxz.mmdkf  != 0 
-        or qzmmqtxz.mmqt   != 0 
-        or qzzlzjxz.zlzjf  != 0 
-        or qzdlfwfxz.dlfwf != 0 
-        or qzmmzjjz.mmzjf  != 0 
-        or qzmmdkjz.mmdkf  != 0 
-        or qzmmqtjz.mmqt   != 0 
-        or qzzlzjjz.zlzjf  != 0 
-        or qzdlfwfjz.dlfwf != 0)
+       /* or qzmmzjxz.mmzjf  != 0
+        or qzmmdkxz.mmdkf  != 0
+        or qzmmqtxz.mmqt   != 0
+        or qzzlzjxz.zlzjf  != 0
+        or qzdlfwfxz.dlfwf != 0
+        or qzmmzjjz.mmzjf  != 0
+        or qzmmdkjz.mmdkf  != 0
+        or qzmmqtjz.mmqt   != 0
+        or qzzlzjjz.zlzjf  != 0
+        or qzdlfwfjz.dlfwf != 0*/)
 --and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
  order by u.DAQUNAME,u.deptname,u.USERNAME;
