@@ -99,7 +99,7 @@ from
   left join
  (select dlfee.store_user_id,sum(dlfee.price) dlzjf from report_dl_fee_info dlfee  where dlfee.fee_name = '中介服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and dlfee.price >= 0 group by dlfee.store_user_id) dlzjjz
  on u.user_id = dlzjjz.store_user_id
- 
+
  --店长个人业绩
  --店长买卖中介服务费(已收)新增
  left join
@@ -201,26 +201,6 @@ from
     or  mmqtjz.mmqt        != 0
     or  zlzjjz.zlzjf       != 0
     or  zlqtjz.zlqt        != 0
-    or  dlzjjz.dlzjf       != 0
-    or  dzmmzjxz.mmzjf       != 0
-    or  dzmmzjjlxz.mmzjf     != 0
-    or  dzmmdbghxz.mmdbghf   != 0
-    or  dzmmdbghjlxz.mmdbghf != 0
-    or  dzmmdkxz.mmdkf       != 0
-    or  dzmmpgxz.mmpgf       != 0
-    or  dzmmqtxz.mmqt        != 0
-    or  dzzlzjxz.zlzjf       != 0
-    or  dzzlqtxz.zlqt        != 0
-    or  dzdlzjxz.dlzjf       != 0
-    or  dzmmzjjz.mmzjf       != 0
-    or  dzmmzjjljz.mmzjf     != 0
-    or  dzmmdbghjz.mmdbghf   != 0
-    or  dzmmdbghjljz.mmdbghf != 0
-    or  dzmmdkjz.mmdkf       != 0
-    or  dzmmpgjz.mmpgf       != 0
-    or  dzmmqtjz.mmqt        != 0
-    or  dzzlzjjz.zlzjf       != 0
-    or  dzzlqtjz.zlqt        != 0
-    or  dzdlzjjz.dlzjf       != 0)
+    or  dlzjjz.dlzjf       != 0)
 --and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
  order by u.nameall,u.deptname;
