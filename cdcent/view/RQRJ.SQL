@@ -1,30 +1,39 @@
 create or replace view rqrj as
 select u."USER_ID",u."USERNAME",u."JOB_NAME",u."STATUS",u."INDUCTION_TIME",u."STAR_LEVEL",u."DEPT_ID",u."DEPTNAME",u."NAMEALL",u."DAQUNAME",u."PIANQU_ID",u."DIMISSION_DATE",
-mmzj.mmzjf as 买卖到帐中介服务费,
-mmdk.mmdkf as 买卖到帐贷款服务费,
-mmpg.mmpgf as 买卖到帐评估费提成,
-mmqt.mmqt as 买卖到帐其他费用,
-mmdz.mmdz as 买卖到帐垫资服务费,
-mmdbghf.mmdbghf as 买卖到帐代办过户费,
-mmmfzjf.mmmfzjf as 买卖到帐卖方中介费,
-mmpgfsr.mmpgfsr as 买卖到帐评估费收入,
-zlzj.zlzjf as 租赁到帐中介服务费,
-zlmfzjf.zlmfzjf as 租赁到帐卖方中介费,
-zlqt.zlqt as 租赁到帐其他费用,
-/*dlzjf.dlzjf as 代理到帐中介服务费,*/
-MMHTZJ.MMHTZJ AS 买卖合同中介服务费,
-MMHTDK.MMHTDK AS 买卖合同贷款服务费,
-MMHTPGFTC.MMHTPGFTC AS 买卖合同评估费提成,
-MMHTPGFSR.MMHTPGFSR AS 买卖合同评估费收入,
-MMHTDBGHF.MMHTDBGHF as 买卖合同代办过户费,
-MMHTQTFY.MMHTQTFY   AS 买卖合同其他费用,
-MMHTMFZJF.MMHTMFZJF AS 买卖合同卖方中介费,
-ZLHTZJFWF.ZLHTZJFWF AS 租赁合同中介服务费,
-ZLHTMFZJF.ZLHTMFZJF AS 租赁合同卖方中介费,
-/*DLHTZJFWF.DLHTZJFWF AS 代理合同中介服务费,*/
-MMHT.MMHT AS 买卖新增套数,
-ZLHT.ZLHT AS 租赁新增套数/*,
-DLHT.DLHT AS 代理新增套数*/
+NVL(mmzj.mmzjf,0) as 买卖到帐中介服务费,
+NVL(mmdk.mmdkf,0) as 买卖到帐贷款服务费,
+NVL(mmpg.mmpgf,0) as 买卖到帐评估费提成,
+NVL(mmqt.mmqt,0) as 买卖到帐其他费用,
+NVL(mmdz.mmdz,0) as 买卖到帐垫资服务费,
+NVL(mmdbghf.mmdbghf,0) as 买卖到帐代办过户费,
+NVL(mmmfzjf.mmmfzjf,0) as 买卖到帐卖方中介费,
+NVL(mmpgfsr.mmpgfsr,0) as 买卖到帐评估费收入,
+(NVL(mmzj.mmzjf,0)+NVL(mmdk.mmdkf,0)+NVL(mmpg.mmpgf,0)+NVL(mmqt.mmqt,0)+NVL(mmdz.mmdz,0)+NVL(mmdbghf.mmdbghf,0)+NVL(mmmfzjf.mmmfzjf,0)+NVL(mmpgfsr.mmpgfsr,0)) as 买卖到账值,
+
+NVL(zlzj.zlzjf,0) as 租赁到帐中介服务费,
+NVL(zlmfzjf.zlmfzjf,0) as 租赁到帐卖方中介费,
+NVL(zlqt.zlqt,0) as 租赁到帐其他费用,
+(NVL(zlzj.zlzjf,0)+NVL(zlmfzjf.zlmfzjf,0)+NVL(zlqt.zlqt,0)) AS 租赁到账值,
+
+/*NVL(dlzjf.dlzjf,0) as 代理到帐中介服务费,*/
+NVL(MMHTZJ.MMHTZJ,0) AS 买卖合同中介服务费,
+NVL(MMHTDK.MMHTDK,0) AS 买卖合同贷款服务费,
+NVL(MMHTPGFTC.MMHTPGFTC,0) AS 买卖合同评估费提成,
+NVL(MMHTPGFSR.MMHTPGFSR,0) AS 买卖合同评估费收入,
+NVL(MMHTDBGHF.MMHTDBGHF,0) as 买卖合同代办过户费,
+NVL(MMHTQTFY.MMHTQTFY,0)   AS 买卖合同其他费用,
+NVL(MMHTMFZJF.MMHTMFZJF,0) AS 买卖合同卖方中介费,
+(NVL(MMHTZJ.MMHTZJ,0)+NVL(MMHTDK.MMHTDK,0)+NVL(MMHTPGFTC.MMHTPGFTC,0)+NVL(MMHTPGFSR.MMHTPGFSR,0)+NVL(MMHTDBGHF.MMHTDBGHF,0)+NVL(MMHTQTFY.MMHTQTFY,0)+NVL(MMHTMFZJF.MMHTMFZJF,0)) as 买卖合同值,
+
+NVL(ZLHTZJFWF.ZLHTZJFWF,0) AS 租赁合同中介服务费,
+NVL(ZLHTMFZJF.ZLHTMFZJF,0) AS 租赁合同卖方中介费,
+(NVL(ZLHTZJFWF.ZLHTZJFWF,0)+NVL(ZLHTMFZJF.ZLHTMFZJF,0)) as 租赁合同值,
+
+/*NVL(DLHTZJFWF.DLHTZJFWF,0) AS 代理合同中介服务费,*/
+
+NVL(MMHT.MMHT,0) AS 买卖新增套数,
+NVL(ZLHT.ZLHT,0) AS 租赁新增套数/*,
+NVL(DLHT.DLHT,0) AS 代理新增套数*/
 from
  (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
  --买卖到账中介服务费
