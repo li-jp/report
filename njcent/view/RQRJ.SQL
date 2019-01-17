@@ -33,7 +33,12 @@ NVL(zlqtjz.zlqt,0) as 租赁到帐其他费用结转,
 (NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) AS 租赁到账值结转,
 
 /*NVL(dlzjfjz.dlzjf,0) as 代理到帐中介服务费结转,*/
-
+(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
++NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值,
+(NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
++NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) as 租赁到账值,
+/*(NVL(dlzjfxz.dlzjf,0)
++NVL(dlzjfjz.dlzjf,0)) as 代理到账值,*/
 (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
 +NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)
 +NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
