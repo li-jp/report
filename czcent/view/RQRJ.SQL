@@ -33,7 +33,12 @@ NVL(zlqtjz.zlqt,0) as 租赁到帐其他费用结转,
 (NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) AS 租赁到账值结转,
 
 /*NVL(dlzjfjz.dlzjf,0) as 代理到帐中介服务费结转,*/
-
+(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
++NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值,
+(NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
++NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) as 租赁到账值,
+/*(NVL(dlzjfxz.dlzjf,0)
++NVL(dlzjfjz.dlzjf,0)) as 代理到账值,*/
 (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
 +NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)
 +NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
@@ -64,7 +69,7 @@ NVL(MMHT.MMHT,0) AS 买卖新增套数,
 NVL(ZLHT.ZLHT,0) AS 租赁新增套数/*,
 NVL(DLHT.DLHT,0) AS 代理新增套数*/
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%片区%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
  --买卖到账中介服务费新增
  left join
  (select
