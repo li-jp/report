@@ -212,6 +212,7 @@ from
     or  zlzjxz.zlzjf       != 0
     or  zlqtxz.zlqt        != 0
     or  dlzjxz.dlzjf       != 0
+	or  dlzjjlxz.dlzjfjl   != 0
     or  mmzjjz.mmzjf       != 0
     or  mmzjjljz.mmzjf     != 0
     or  mmdbghjz.mmdbghf   != 0
@@ -221,6 +222,7 @@ from
     or  mmqtjz.mmqt        != 0
     or  zlzjjz.zlzjf       != 0
     or  zlqtjz.zlqt        != 0
-    or  dlzjjz.dlzjf       != 0)
+    or  dlzjjz.dlzjf       != 0
+	or  dlzjjljz.dlzjfjl   != 0)
 --and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
  order by u.nameall,u.deptname;
