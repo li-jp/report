@@ -1,5 +1,8 @@
 create or replace view report_mm_fee_info as
-select detail.price ,detail.user_id,detail.store_user_id,detail.area_user_id,detail.input_date,detail.proportion,fee.fee_name, fee.rachel_date, mmht.review_date, detail.reason, mmht.contract_code, mmht.handwriting_code, mmht.deal_date, loan.trloan_end
+select detail.price ,detail.user_id,detail.store_user_id,detail.area_user_id,detail.input_date,detail.proportion,fee.fee_name, fee.rachel_date, mmht.review_date, detail.reason, mmht.contract_code, mmht.handwriting_code, mmht.deal_date, loan.trloan_end,
+CASE WHEN LOAN.TRLOAN_END IS NOT NULL       THEN DETAIL.PRICE
+     WHEN FEE.RACHEL_DATE < LOAN.TRLOAN_END THEN DETAIL.PRICE * 0.5
+     ELSE 0 END JL
 from new_fin_profit_detail detail
 left join  biz_contract_fee fee on detail.fee_id =fee.id
 left join biz_mm_contract mmht on fee.contract_id =mmht.id
