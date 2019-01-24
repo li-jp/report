@@ -15,7 +15,7 @@ NVL(zlmfzjfxz.zlmfzjf,0) as 租赁到帐卖方中介费新增,
 NVL(zlqtxz.zlqt,0) as 租赁到帐其他费用新增,
 (NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)) AS 租赁到账值新增,
 
-/*NVL(dlzjfxz.dlzjf,0) as 代理到帐中介服务费新增,*/
+NVL(dlzjfxz.dlzjf,0) as 代理到帐中介服务费新增,
 
 NVL(mmzjjz.mmzjf,0) as 买卖到帐中介服务费结转,
 NVL(mmdkjz.mmdkf,0) as 买卖到帐贷款服务费结转,
@@ -32,19 +32,19 @@ NVL(zlmfzjfjz.zlmfzjf,0) as 租赁到帐卖方中介费结转,
 NVL(zlqtjz.zlqt,0) as 租赁到帐其他费用结转,
 (NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) AS 租赁到账值结转,
 
-/*NVL(dlzjfjz.dlzjf,0) as 代理到帐中介服务费结转,*/
+NVL(dlzjfjz.dlzjf,0) as 代理到帐中介服务费结转,
 (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
 +NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值,
 (NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
 +NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) as 租赁到账值,
-/*(NVL(dlzjfxz.dlzjf,0)
-+NVL(dlzjfjz.dlzjf,0)) as 代理到账值,*/
+(NVL(dlzjfxz.dlzjf,0)
++NVL(dlzjfjz.dlzjf,0)) as 代理到账值,
 (NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
 +NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)
 +NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
 +NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)
-/*+NVL(dlzjfxz.dlzjf,0)
-+NVL(dlzjfjz.dlzjf,0)*/ ) as 到账值合计,
++NVL(dlzjfxz.dlzjf,0)
++NVL(dlzjfjz.dlzjf,0) ) as 到账值合计,
 
 NVL(MMHTZJ.MMHTZJ,0) AS 买卖合同中介服务费,
 NVL(MMHTDK.MMHTDK,0) AS 买卖合同贷款服务费,
@@ -59,17 +59,17 @@ NVL(ZLHTZJFWF.ZLHTZJFWF,0) AS 租赁合同中介服务费,
 NVL(ZLHTMFZJF.ZLHTMFZJF,0) AS 租赁合同卖方中介费,
 (NVL(ZLHTZJFWF.ZLHTZJFWF,0)+NVL(ZLHTMFZJF.ZLHTMFZJF,0)) as 租赁合同值,
 
-/*NVL(DLHTZJFWF.DLHTZJFWF,0) AS 代理合同中介服务费,*/
+NVL(DLHTZJFWF.DLHTZJFWF,0) AS 代理合同中介服务费,
 
 (NVL(MMHTZJ.MMHTZJ,0)+NVL(MMHTDK.MMHTDK,0)+NVL(MMHTPGFTC.MMHTPGFTC,0)+NVL(MMHTPGFSR.MMHTPGFSR,0)+NVL(MMHTDBGHF.MMHTDBGHF,0)+NVL(MMHTQTFY.MMHTQTFY,0)+NVL(MMHTMFZJF.MMHTMFZJF,0)
 +NVL(ZLHTZJFWF.ZLHTZJFWF,0)+NVL(ZLHTMFZJF.ZLHTMFZJF,0)
-/*+NVL(DLHTZJFWF.DLHTZJFWF,0)*/) as 合同值合计,
++NVL(DLHTZJFWF.DLHTZJFWF,0)) as 合同值合计,
 
 NVL(MMHT.MMHT,0) AS 买卖新增套数,
-NVL(ZLHT.ZLHT,0) AS 租赁新增套数/*,
-NVL(DLHT.DLHT,0) AS 代理新增套数*/
+NVL(ZLHT.ZLHT,0) AS 租赁新增套数,
+NVL(DLHT.DLHT,0) AS 代理新增套数
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房业务部%' or usr.username ='不算个人业绩') and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
  --买卖到账中介服务费新增
  left join
  (select
@@ -223,7 +223,7 @@ and to_char(zlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'
 group by zlfee.user_id) zlqtxz
  on u.user_id = zlqtxz.user_id
 
- /*--代理到帐中介服务费新增
+ --代理到帐中介服务费新增
   left join
  (select
  dlfee.user_id,
@@ -236,7 +236,7 @@ and to_char(dlfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_ST
 and to_char(dlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
 group by dlfee.user_id) dlzjfxz
- on u.user_id = dlzjfxz.user_id*/
+ on u.user_id = dlzjfxz.user_id
 
 --买卖到账中介服务费结转
  left join
@@ -391,7 +391,7 @@ and to_char(zlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'
 group by zlfee.user_id) zlqtjz
  on u.user_id = zlqtjz.user_id
 
- /*--代理到帐中介服务费结转
+ --代理到帐中介服务费结转
   left join
  (select
  dlfee.user_id,
@@ -403,7 +403,7 @@ and to_char(dlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'
 and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
 and dlfee.price >= 0
 group by dlfee.user_id) dlzjfjz
- on u.user_id = dlzjfjz.user_id*/
+ on u.user_id = dlzjfjz.user_id
 
  --买卖合同中介服务费
   left join
@@ -441,10 +441,10 @@ group by dlfee.user_id) dlzjfjz
    left join
   (select T.DUTY_USER_ID, SUM(R.RECEIVABLE) ZLHTMFZJF FROM BIZ_ZL_CONTRACT T LEFT JOIN BIZ_CONTRACT_RECEIVABLE R ON R.CONTRACT_ID = T.ID AND R.FEE_TYPE ='卖方中介费' AND T.IS_REC = 0 AND T.STATUS = '已审核' AND R.STATUS = '有效' AND R.IS_REC = 0 and to_char(T.REVIEW_DATE,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') and to_char(T.REVIEW_DATE,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd') GROUP BY T.DUTY_USER_ID ) ZLHTMFZJF
  ON U.USER_ID = ZLHTMFZJF.DUTY_USER_ID
-  /*--代理合同中介服务费
+  --代理合同中介服务费
    left join
   (select T.DUTY_USER_ID, SUM(R.RECEIVABLE) DLHTZJFWF FROM BIZ_BUILDING_CONTRACT T LEFT JOIN BIZ_CONTRACT_RECEIVABLE R ON R.CONTRACT_ID = T.ID AND R.FEE_TYPE ='中介服务费' AND T.IS_REC = 0 AND T.STATUS = '已审核' AND R.STATUS = '有效' AND R.IS_REC = 0 and to_char(T.REVIEW_DATE,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') and to_char(T.REVIEW_DATE,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd') GROUP BY T.DUTY_USER_ID ) DLHTZJFWF
- ON U.USER_ID = DLHTZJFWF.DUTY_USER_ID*/
+ ON U.USER_ID = DLHTZJFWF.DUTY_USER_ID
   --买卖新增套数
    left join
   (select T.DUTY_USER_ID, COUNT(T.ID) MMHT FROM BIZ_MM_CONTRACT T WHERE T.IS_REC = 0 AND T.STATUS = '已审核'  and to_char(T.REVIEW_DATE,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') and to_char(T.REVIEW_DATE,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd') GROUP BY T.DUTY_USER_ID ) MMHT
@@ -453,10 +453,10 @@ group by dlfee.user_id) dlzjfjz
    left join
   (select T.DUTY_USER_ID, COUNT(T.ID) ZLHT FROM BIZ_ZL_CONTRACT T WHERE T.IS_REC = 0 AND T.STATUS = '已审核'  and to_char(T.REVIEW_DATE,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') and to_char(T.REVIEW_DATE,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd') GROUP BY T.DUTY_USER_ID ) ZLHT
  ON U.USER_ID = ZLHT.DUTY_USER_ID
-  /*--代理新增套数
+  --代理新增套数
    left join
   (select T.DUTY_USER_ID, COUNT(T.ID) DLHT FROM BIZ_BUILDING_CONTRACT T WHERE T.IS_REC = 0 AND T.STATUS = '已审核'  and to_char(T.REVIEW_DATE,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') and to_char(T.REVIEW_DATE,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd') GROUP BY T.DUTY_USER_ID ) DLHT
- ON U.USER_ID = DLHT.DUTY_USER_ID*/
+ ON U.USER_ID = DLHT.DUTY_USER_ID
 
  --where   VIEW_DATE.SET_START_DATE('2019-01-01') = TO_DATE('2019-01-01','yyyy-MM-dd')
  --and     VIEW_DATE.SET_END_DATE('2019-01-31') = TO_DATE('2019-01-31','yyyy-MM-dd')
