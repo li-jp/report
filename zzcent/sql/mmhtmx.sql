@@ -17,7 +17,7 @@ SELECT
  T.DEAL_PRICE AS 成交价, 
  R.RECEIVABLE AS 应收中介费, 
  R1.RECEIVABLE AS 应收贷款中介费, 
- LT.LOAN_FROM AS 贷款类型,
+ /*LT.LOAN_FROM AS 贷款类型,*/
  SUM( R.RECEIVABLE) /T.DEAL_PRICE  AS 收费比例,
 NVL(zjfwf.zjfwf,0) as 实收中介费,
 NVL(pgftc.pgftc,0) as 评估费提成,
@@ -47,9 +47,9 @@ LEFT JOIN   BIZ_CONTRACT_RECEIVABLE R1
 ON     R1.CONTRACT_ID = T.ID
 AND    R1.FEE_TYPE = '贷款服务费'
 AND    R1.IS_REC = 0
-LEFT JOIN   BIZ_LOAN_CONTRACT LT
+/*LEFT JOIN   BIZ_LOAN_CONTRACT LT
 ON     LT.PID = T.ID
-AND    LT.IS_REC = 0
+AND    LT.IS_REC = 0*/
 LEFT   JOIN BIZ_CONTRACT_FEE F
 ON     F.CONTRACT_ID = T.ID
 AND    F.FEE_NAME = '中介服务费'
@@ -150,4 +150,4 @@ AND    T.IS_REC = 0
 AND    TO_DATE(to_char(T.REVIEW_DATE,'yyyy-MM-dd'),'yyyy-MM-dd') >= TO_DATE('${MONTH_START}','yyyy-MM-dd')
 AND    TO_DATE(to_char(T.REVIEW_DATE,'yyyy-MM-dd'),'yyyy-MM-dd') <= TO_DATE('${MONTH_END}','yyyy-MM-dd')
 GROUP BY D.NAMEALL, D.NAME, U.USERNAME, T.CONTRACT_CODE, T.HANDWRITING_CODE,  T.IF_LIMIT,  T.DEAL_DATE,  T.REVIEW_DATE,  MMFY.CODE,  DUTY.NAME,  DUTY.USERNAME,  T.ADDRESS,  MMFY.BUILD_AREA, 
- P.NAME,  PP.NAME, T.DEAL_PRICE, R.RECEIVABLE, R1.RECEIVABLE,LT.LOAN_FROM, zjfwf.zjfwf, pgftc.pgftc, dkfwf.dkfwf, qtfy.qtfy, dspgf.dspgf, pgf_cw.pgf_cw, T.STATUS, dbghf.dbghf
+ P.NAME,  PP.NAME, T.DEAL_PRICE, R.RECEIVABLE, R1.RECEIVABLE,/*LT.LOAN_FROM,*/ zjfwf.zjfwf, pgftc.pgftc, dkfwf.dkfwf, qtfy.qtfy, dspgf.dspgf, pgf_cw.pgf_cw, T.STATUS, dbghf.dbghf
