@@ -2,13 +2,14 @@ create or replace view rqrj as
 select u."USER_ID",u."USERNAME",u."JOB_NAME",u."STATUS",u."INDUCTION_TIME",u."STAR_LEVEL",u."DEPT_ID",u."DEPTNAME",u."NAMEALL",u."DAQUNAME",u."PIANQU_ID",u."DIMISSION_DATE",
 NVL(mmzjxz.mmzjf,0) as 买卖到帐中介服务费新增,
 NVL(mmdkxz.mmdkf,0) as 买卖到帐贷款服务费新增,
-NVL(mmpgxz.mmpgf,0) as 买卖到帐评估费提成新增,
+NVL(mmpgfxz.mmpgf,0) as 买卖到帐评估费新增,
+NVL(mmpgftcxz.mmpgftc,0) as 买卖到帐评估费提成新增,
 NVL(mmqtxz.mmqt,0) as 买卖到帐其他费用新增,
 NVL(mmdzxz.mmdz,0) as 买卖到帐垫资服务费新增,
 NVL(mmdbghfxz.mmdbghf,0) as 买卖到帐代办过户费新增,
 NVL(mmmfzjfxz.mmmfzjf,0) as 买卖到帐卖方中介费新增,
 NVL(mmpgfsrxz.mmpgfsr,0) as 买卖到帐评估费收入新增,
-(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)) as 买卖到账值新增,
+(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgfxz.mmpgf,0)+NVL(mmpgftcxz.mmpgftc,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)) as 买卖到账值新增,
 
 NVL(zlzjxz.zlzjf,0) as 租赁到帐中介服务费新增,
 NVL(zlmfzjfxz.zlmfzjf,0) as 租赁到帐卖方中介费新增,
@@ -19,13 +20,14 @@ NVL(dlzjfxz.dlzjf,0) as 代理到帐中介服务费新增,
 
 NVL(mmzjjz.mmzjf,0) as 买卖到帐中介服务费结转,
 NVL(mmdkjz.mmdkf,0) as 买卖到帐贷款服务费结转,
-NVL(mmpgjz.mmpgf,0) as 买卖到帐评估费提成结转,
+NVL(mmpgfjz.mmpgf,0) as 买卖到帐评估费结转,
+NVL(mmpgftcjz.mmpgftc,0) as 买卖到帐评估费提成结转,
 NVL(mmqtjz.mmqt,0) as 买卖到帐其他费用结转,
 NVL(mmdzjz.mmdz,0) as 买卖到帐垫资服务费结转,
 NVL(mmdbghfjz.mmdbghf,0) as 买卖到帐代办过户费结转,
 NVL(mmmfzjfjz.mmmfzjf,0) as 买卖到帐卖方中介费结转,
 NVL(mmpgfsrjz.mmpgfsr,0) as 买卖到帐评估费收入结转,
-(NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值结转,
+(NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgfjz.mmpgf,0)+NVL(mmpgftcjz.mmpgftc,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值结转,
 
 NVL(zlzjjz.zlzjf,0) as 租赁到帐中介服务费结转,
 NVL(zlmfzjfjz.zlmfzjf,0) as 租赁到帐卖方中介费结转,
@@ -34,14 +36,14 @@ NVL(zlqtjz.zlqt,0) as 租赁到帐其他费用结转,
 
 NVL(dlzjfjz.dlzjf,0) as 代理到帐中介服务费结转,
 
-(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
-+NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值,
+(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgfxz.mmpgf,0)+NVL(mmpgftcxz.mmpgftc,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
++NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgfjz.mmpgf,0)+NVL(mmpgftcjz.mmpgftc,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)) as 买卖到账值,
 (NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
 +NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)) as 租赁到账值,
 (NVL(dlzjfxz.dlzjf,0)
 +NVL(dlzjfjz.dlzjf,0)) as 代理到账值,
-(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgxz.mmpgf,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
-+NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgjz.mmpgf,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)
+(NVL(mmzjxz.mmzjf,0)+NVL(mmdkxz.mmdkf,0)+NVL(mmpgfxz.mmpgf,0)+NVL(mmpgftcxz.mmpgftc,0)+NVL(mmqtxz.mmqt,0)+NVL(mmdzxz.mmdz,0)+NVL(mmdbghfxz.mmdbghf,0)+NVL(mmmfzjfxz.mmmfzjf,0)+NVL(mmpgfsrxz.mmpgfsr,0)
++NVL(mmzjjz.mmzjf,0)+NVL(mmdkjz.mmdkf,0)+NVL(mmpgfjz.mmpgf,0)+NVL(mmpgftcjz.mmpgftc,0)+NVL(mmqtjz.mmqt,0)+NVL(mmdzjz.mmdz,0)+NVL(mmdbghfjz.mmdbghf,0)+NVL(mmmfzjfjz.mmmfzjf,0)+NVL(mmpgfsrjz.mmpgfsr,0)
 +NVL(zlzjxz.zlzjf,0)+NVL(zlmfzjfxz.zlmfzjf,0)+NVL(zlqtxz.zlqt,0)
 +NVL(zlzjjz.zlzjf,0)+NVL(zlmfzjfjz.zlmfzjf,0)+NVL(zlqtjz.zlqt,0)
 +NVL(dlzjfxz.dlzjf,0)
@@ -70,7 +72,7 @@ NVL(MMHT.MMHT,0) AS 买卖新增套数,
 NVL(ZLHT.ZLHT,0) AS 租赁新增套数,
 NVL(DLHT.DLHT1,0) AS 代理新增套数
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.nameall='联动营业部' or usr.username ='不算个人业绩' ) and usr.deptname <>'金融权证' and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.nameall='联动营业部' or usr.username ='不算个人业绩' or usr.deptname <>'金融权证') and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
  --买卖到账中介服务费新增
  left join
  (select
@@ -102,6 +104,20 @@ from report_mm_fee_info mmfee
  left join
  (select
   mmfee.user_id,
+  sum(mmfee.price) mmpgftc
+from report_mm_fee_info mmfee
+  where mmfee.fee_name = '评估费提成'
+  and to_char(mmfee.review_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
+  and to_char(mmfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_START_DATE),'yyyy-MM-dd')
+  and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
+  and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
+  group by mmfee.user_id) mmpgftcxz
+ on u.user_id = mmpgftcxz.user_id
+ 
+  --买卖到账评估费新增
+ left join
+ (select
+  mmfee.user_id,
   sum(mmfee.price) mmpgf
 from report_mm_fee_info mmfee
   where mmfee.fee_name = '评估费'
@@ -109,8 +125,8 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_START_DATE),'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-  group by mmfee.user_id) mmpgxz
- on u.user_id = mmpgxz.user_id
+  group by mmfee.user_id) mmpgfxz
+ on u.user_id = mmpgfxz.user_id
 
  --买卖到账其他费用新增
  left join
@@ -269,6 +285,20 @@ from report_mm_fee_info mmfee
  left join
  (select
   mmfee.user_id,
+  sum(mmfee.price) mmpgftc
+from report_mm_fee_info mmfee
+  where mmfee.fee_name = '评估费提成'
+  and to_char(mmfee.review_date,'yyyy-MM-dd')< concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
+  and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
+  and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
+  and mmfee.price >= 0
+  group by mmfee.user_id) mmpgftcjz
+ on u.user_id = mmpgftcjz.user_id
+ 
+  --买卖到账评估费结转
+ left join
+ (select
+  mmfee.user_id,
   sum(mmfee.price) mmpgf
 from report_mm_fee_info mmfee
   where mmfee.fee_name = '评估费'
@@ -276,8 +306,8 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
   and mmfee.price >= 0
-  group by mmfee.user_id) mmpgjz
- on u.user_id = mmpgjz.user_id
+  group by mmfee.user_id) mmpgfjz
+ on u.user_id = mmpgfjz.user_id
 
  --买卖到账其他费用结转
  left join
