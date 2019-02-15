@@ -1,4 +1,4 @@
-create or replace view qzyj as
+CREATE OR REPLACE VIEW QZYJ AS
 WITH JL AS (
   SELECT T.user_id, T.store_user_id, T.area_user_id, T.input_date, T.proportion, T.fee_name, T.rachel_date, T.review_date,T.Early_Profit_Date, T.reason, T.contract_code, T.handwriting_code, T.deal_date, T.trloan_end,
   CASE WHEN to_char(T.trloan_end,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd')
@@ -13,15 +13,13 @@ select u."USER_ID",u."USERNAME",u."JOB_NAME",u."STATUS",u."INDUCTION_TIME",u."ST
 mmzjxz.mmzjf as 买卖中介服务费_已收_新增, mmzjjlxz.mmzjf as 买卖中介服务费_结利_新增, mmdbghxz.mmdbghf as 买卖代办过户费_已收_新增,mmdbghjlxz.mmdbghf as 买卖代办过户费_结利_新增,
 mmdkxz.mmdkf as 买卖贷款服务费新增,mmpgxz.mmpgf as 买卖评估费提成新增,mmqtxz.mmqt as 买卖其他费用新增,
 zlzjxz.zlzjf as 租赁中介服务费新增,zlqtxz.zlqt as 租赁其他费用新增,
-dlzjxz.dlzjf as 代理中介服务费_已收_新增,
-dlzjjlxz.dlzjfjl as 代理中介服务费_结利_新增,
+dlzjxz.dlzjf as 代理中介服务费_已收_新增,dlzjjlxz.dlzjfjl as 代理中介服务费_结利_新增,dlzjjlxz2.dlzjfjl2 as 代理中介服务费_二次结利_新增,
 mmzjjz.mmzjf as 买卖中介服务费_已收_结转,mmzjjljz.mmzjf as 买卖中介服务费_结利_结转, mmdbghjz.mmdbghf as 买卖代办过户费_已收_结转,mmdbghjljz.mmdbghf as 买卖代办过户费_结利_结转,
 mmdkjz.mmdkf as 买卖贷款服务费结转,mmpgjz.mmpgf as 买卖评估费提成结转,mmqtjz.mmqt as 买卖其他费用结转,
 zlzjjz.zlzjf as 租赁中介服务费结转,zlqtjz.zlqt as 租赁其他费用结转,
-dlzjjz.dlzjf as 代理中介服务费_已收_结转,
-dlzjjljz.dlzjfjl as 代理中介服务费_结利_结转
+dlzjjz.dlzjf as 代理中介服务费_已收_结转,dlzjjljz.dlzjfjl as 代理中介服务费_结利_结转,dlzjjljz2.dlzjfjl2 as 代理中介服务费_二次结利_结转
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩' or usr.nameall = '联动营业部' or usr.deptname = '金融权证') and ((usr.status = '离职' and (to_date(to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_DATE,'yyyy-MM') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.username ='不算个人业绩' or usr.nameall = '联动营业部' or usr.deptname = '金融权证' )  and ((usr.status = '离职' and (to_date(to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_DATE,'yyyy-MM') ))) u
  --买卖中介服务费(已收)新增
  left join
  (select mmfee.area_user_id,sum(mmfee.price) mmzjf from report_mm_fee_info mmfee  where mmfee.fee_name = '中介服务费' and to_char(mmfee.review_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and to_char(mmfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') group by mmfee.area_user_id) mmzjxz
@@ -66,6 +64,10 @@ from
   left join
  (select dlfee.area_user_id,sum(dlfee.price) dlzjfjl from report_dl_fee_info dlfee  where dlfee.fee_name = '中介服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') group by dlfee.area_user_id) dlzjjlxz
  on u.user_id = dlzjjlxz.area_user_id
+  --代理中介服务费（二次结利）新增
+   left join
+ (select dlfee.area_user_id,sum(dlfee.price) dlzjfjl2 from report_dl_fee_info dlfee  where dlfee.fee_name = '中介服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.review_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') group by dlfee.area_user_id) dlzjjlxz2
+ on u.user_id = dlzjjlxz2.area_user_id
   --买卖中介服务费(已收)结转
  left join
   (select mmfee.area_user_id,sum(mmfee.price) mmzjf from report_mm_fee_info mmfee  where mmfee.fee_name = '中介服务费' and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and mmfee.price >= 0 group by mmfee.area_user_id) mmzjjz
@@ -110,6 +112,10 @@ from
   left join
  (select dlfee.area_user_id,sum(dlfee.price) dlzjfjl from report_dl_fee_info dlfee  where dlfee.fee_name = '中介服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and dlfee.price >= 0 group by dlfee.area_user_id) dlzjjljz
  on u.user_id = dlzjjljz.area_user_id
+  --代理中介服务费(二次结利)结转
+   left join
+ (select dlfee.area_user_id,sum(dlfee.price) dlzjfjl2 from report_dl_fee_info dlfee  where dlfee.fee_name = '中介服务费' and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.contract_online_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') >= concat(to_char(VIEW_DATE.GET_DATE,'yyyy-MM'),'-01') and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(last_day(VIEW_DATE.GET_DATE),'yyyy-MM-dd') and dlfee.price >= 0 group by dlfee.area_user_id) dlzjjljz2
+ on u.user_id = dlzjjljz2.area_user_id
  where (u.job_name = '营业经理'
     or  mmzjxz.mmzjf       != 0
     or  mmzjjlxz.mmzjf     != 0
@@ -122,6 +128,7 @@ from
     or  zlqtxz.zlqt        != 0
     or  dlzjxz.dlzjf       != 0
     or  dlzjjlxz.dlzjfjl   != 0
+    or  dlzjjlxz2.dlzjfjl2 != 0
     or  mmzjjz.mmzjf       != 0
     or  mmzjjljz.mmzjf     != 0
     or  mmdbghjz.mmdbghf   != 0
@@ -132,6 +139,7 @@ from
     or  zlzjjz.zlzjf       != 0
     or  zlqtjz.zlqt        != 0
     or  dlzjjz.dlzjf       != 0
-    or  dlzjjljz.dlzjfjl   != 0)
+    or  dlzjjljz.dlzjfjl   != 0
+    or  dlzjjljz2.dlzjfjl2 != 0)
  --and   VIEW_DATE.SET_DATE('2018-10') = TO_DATE('2018-10','yyyy-MM')
  order by u.DAQUNAME,u.deptname,u.USERNAME;
