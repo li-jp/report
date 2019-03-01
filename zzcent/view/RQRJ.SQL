@@ -72,7 +72,7 @@ NVL(MMHT.MMHT,0) AS 买卖新增套数,
 NVL(ZLHT.ZLHT,0) AS 租赁新增套数,
 NVL(DLHT.DLHT1,0) AS 代理新增套数
 from
- (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.nameall='联动营业部' or usr.username ='不算个人业绩' or usr.deptname ='金融权证') and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
+ (select usr.* from report_user_dept_info usr where (usr.nameall like '%二手房事业部%' or usr.nameall='联动营业部' or usr.username ='不算个人业绩' or usr.deptname ='金融权证' or usr.deptname = '人力资源部') and ((usr.status = '离职' and (to_date(to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd'),'yyyy-MM-dd')-to_date(to_char(usr.Dimission_Date,'yyyy-MM-dd'),'yyyy-MM-dd') <=35)) or (usr.status = '在职' and to_char(usr.induction_time,'yyyy-MM') <= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd') ))) u
  --买卖到账中介服务费新增
  left join
  (select
