@@ -7,8 +7,8 @@ BEGIN
   INTO   R
   FROM   JX_RATIO T
   WHERE  T.TYPE = 1
-  AND    T.LOWER <= YJ
-  AND    T.UPPER > YJ
+  AND    T.LOWER < YJ
+  AND    T.UPPER >= YJ
   AND    T.INPUT_TIME = (SELECT MAX(T1.INPUT_TIME)
                          FROM   JX_RATIO T1
                          WHERE  T1.TYPE = T.TYPE
