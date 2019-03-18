@@ -264,7 +264,7 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-  and mmfee.price >= 0
+  --and mmfee.price >= 0
   group by mmfee.user_id) mmzjjz
  on u.user_id = mmzjjz.user_id
 
@@ -277,7 +277,7 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.review_date,'yyyy-MM-dd')< concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-  and mmfee.price >= 0
+  --and mmfee.price >= 0
   group by mmfee.user_id) mmdkjz
  on u.user_id = mmdkjz.user_id
 
@@ -291,7 +291,7 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.review_date,'yyyy-MM-dd')< concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-  and mmfee.price >= 0
+  --and mmfee.price >= 0
   group by mmfee.user_id) mmpgftcjz
  on u.user_id = mmpgftcjz.user_id
 
@@ -305,7 +305,7 @@ from report_mm_fee_info mmfee
   and to_char(mmfee.review_date,'yyyy-MM-dd')< concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
   and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
   and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-  and mmfee.price >= 0
+  --and mmfee.price >= 0
   group by mmfee.user_id) mmpgfjz
  on u.user_id = mmpgfjz.user_id
 
@@ -319,7 +319,7 @@ sum(mmfee.price) mmqt
 and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and mmfee.price >= 0
+--and mmfee.price >= 0
 group by mmfee.user_id) mmqtjz
  on u.user_id = mmqtjz.user_id
 
@@ -333,7 +333,7 @@ sum(mmfee.price) mmdz
 and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and mmfee.price >= 0
+--and mmfee.price >= 0
  group by mmfee.user_id) mmdzjz
  on u.user_id = mmdzjz.user_id
 
@@ -347,7 +347,7 @@ where mmfee.fee_name = '代办过户费'
 and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
  and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
- and mmfee.price >= 0
+ --and mmfee.price >= 0
 group by mmfee.user_id) mmdbghfjz
   on u.user_id = mmdbghfjz.user_id
 
@@ -361,7 +361,7 @@ where mmfee.fee_name = '卖方中介费'
 and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and mmfee.price >= 0
+--and mmfee.price >= 0
 group by mmfee.user_id) mmmfzjfjz
  on u.user_id = mmmfzjfjz.user_id
 
@@ -375,7 +375,7 @@ where mmfee.fee_name = '评估费收入'
 and to_char(mmfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(mmfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(mmfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and mmfee.price >= 0
+--and mmfee.price >= 0
 group by mmfee.user_id) mmpgfsrjz
  on u.user_id = mmpgfsrjz.user_id
 
@@ -389,7 +389,7 @@ where zlfee.fee_name = '中介服务费'
 and to_char(zlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(zlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(zlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and zlfee.price >= 0
+--and zlfee.price >= 0
 group by zlfee.user_id) zlzjjz
  on u.user_id = zlzjjz.user_id
 
@@ -403,7 +403,7 @@ where zlfee.fee_name = '卖方中介费'
 and to_char(zlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(zlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(zlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and zlfee.price >= 0
+--and zlfee.price >= 0
 group by zlfee.user_id) zlmfzjfjz
  on u.user_id = zlmfzjfjz.user_id
 
@@ -417,7 +417,7 @@ from report_zl_fee_info zlfee
 and to_char(zlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(zlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
  and to_char(zlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
- and zlfee.price >= 0
+ --and zlfee.price >= 0
 group by zlfee.user_id) zlqtjz
  on u.user_id = zlqtjz.user_id
 
@@ -431,7 +431,7 @@ where dlfee.fee_name = '中介服务费'
 and to_char(dlfee.review_date,'yyyy-MM-dd') < concat(to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM'),'-01')
 and to_char(dlfee.input_date,'yyyy-MM-dd') >= to_char(VIEW_DATE.GET_START_DATE,'yyyy-MM-dd')
 and to_char(dlfee.input_date,'yyyy-MM-dd') <= to_char(VIEW_DATE.GET_END_DATE,'yyyy-MM-dd')
-and dlfee.price >= 0
+--and dlfee.price >= 0
 group by dlfee.user_id) dlzjfjz
  on u.user_id = dlzjfjz.user_id
 
